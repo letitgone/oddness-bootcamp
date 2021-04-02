@@ -1,0 +1,12 @@
+<mapper namespace="com.oddness.dao.IUserDao">
+
+    <select id="findAll" resultType="com.oddness.pojo.User">
+        select * from user
+    </select>
+
+    <select id="findByCondition" resultType="com.oddness.pojo.User"
+            paramterType="com.oddness.pojo.User">
+        select * from user where id = #{id} and username = #{username}
+    </select>
+
+</mapper>
