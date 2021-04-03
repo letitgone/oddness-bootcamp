@@ -19,33 +19,22 @@ public class IPersistenceTest {
 
     @Test
     public void test() throws Exception {
-        InputStream resourceAsSteam = Resources.getResourceAsSteam("sqlMapConfig.xml");
+        InputStream resourceAsSteam = Resources.getResourceAsSteam("SqlMapConfig.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsSteam);
         SqlSession sqlSession = sqlSessionFactory.openSession();
-
-        //调用
-        User user = new User();
-        user.setId(1);
-        user.setUsername("张三");
-      /*  User user2 = sqlSession.selectOne("user.selectOne", user);
-
-        System.out.println(user2);*/
-
-       /* List<User> users = sqlSession.selectList("user.selectList");
-        for (User user1 : users) {
-            System.out.println(user1);
-        }*/
-
+//        User user = new User();
+//        user.setId(1);
+//        user.setUsername("tom");
+//        User user2 = sqlSession.selectOne("user.selectOne", user);
+//        System.out.println(user2);
+//        List<User> users = sqlSession.selectList("user.selectList");
+//        for (User user1 : users) {
+//            System.out.println(user1);
+//        }
         IUserDao userDao = sqlSession.getMapper(IUserDao.class);
-
         List<User> all = userDao.findAll();
         for (User user1 : all) {
             System.out.println(user1);
         }
-
-
     }
-
-
-
 }

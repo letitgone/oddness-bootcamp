@@ -8,26 +8,25 @@ import java.util.List;
  * @Date 2021/04/02 07:27
  */
 public class ParameterMappingTokenHandler implements TokenHandler {
-	private List<ParameterMapping> parameterMappings = new ArrayList<ParameterMapping>();
+    private List<ParameterMapping> parameterMappings = new ArrayList<ParameterMapping>();
 
-	// context是参数名称 #{id} #{username}
+    @Override
+    public String handleToken(String content) {
+        parameterMappings.add(buildParameterMapping(content));
+        return "?";
+    }
 
-	public String handleToken(String content) {
-		parameterMappings.add(buildParameterMapping(content));
-		return "?";
-	}
+    private ParameterMapping buildParameterMapping(String content) {
+        ParameterMapping parameterMapping = new ParameterMapping(content);
+        return parameterMapping;
+    }
 
-	private ParameterMapping buildParameterMapping(String content) {
-		ParameterMapping parameterMapping = new ParameterMapping(content);
-		return parameterMapping;
-	}
+    public List<ParameterMapping> getParameterMappings() {
+        return parameterMappings;
+    }
 
-	public List<ParameterMapping> getParameterMappings() {
-		return parameterMappings;
-	}
-
-	public void setParameterMappings(List<ParameterMapping> parameterMappings) {
-		this.parameterMappings = parameterMappings;
-	}
+    public void setParameterMappings(List<ParameterMapping> parameterMappings) {
+        this.parameterMappings = parameterMappings;
+    }
 
 }

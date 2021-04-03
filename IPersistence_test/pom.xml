@@ -42,8 +42,8 @@
 
     <repositories>
         <repository>
-            <id>alimaven</id>
-            <name>aliyun maven</name>
+            <id>oddness</id>
+            <name>oddness maven</name>
             <url>http://8.140.171.253:8081/repository/maven-public/</url>
             <releases>
                 <enabled>true</enabled>
@@ -56,8 +56,8 @@
 
     <pluginRepositories>
         <pluginRepository>
-            <id>alimaven</id>
-            <name>aliyun maven</name>
+            <id>oddness</id>
+            <name>oddness maven</name>
             <url>http://8.140.171.253:8081/repository/maven-public/</url>
             <releases>
                 <enabled>true</enabled>
