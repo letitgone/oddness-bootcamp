@@ -83,12 +83,12 @@
 
     <distributionManagement>
         <repository>
-            <id>nexus</id>
+            <id>oddness-nexus-releases</id>
             <name>Releases</name>
             <url>http://${repository.url}/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
-            <id>nexus</id>
+            <id>oddness-nexus-snapshot</id>
             <name>Snapshot</name>
             <url>http://${repository.url}/repository/maven-snapshots/</url>
         </snapshotRepository>
