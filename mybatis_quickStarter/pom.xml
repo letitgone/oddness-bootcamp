@@ -8,7 +8,6 @@
     <artifactId>mybatis_quickStarter</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
@@ -16,8 +15,6 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-
-
 
     <!--引入依赖-->
     <dependencies>
@@ -42,5 +39,81 @@
         </dependency>
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>oddness</id>
+            <name>oddness nexus maven</name>
+            <!--suppress UnresolvedMavenProperty -->
+            <url>http://${repository.url}/repository/maven-public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>oddness</id>
+            <name>oddness nexus maven</name>
+            <!--suppress UnresolvedMavenProperty -->
+            <url>http://${repository.url}/repository/maven-public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <name>Releases</name>
+            <url>http://${repository.url}/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>Snapshot</name>
+            <url>http://${repository.url}/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <repository.url>8.140.171.253:8081</repository.url>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>bug</id>
+            <properties>
+                <repository.url>8.1408888.171.253:8081</repository.url>
+            </properties>
+        </profile>
+        <profile>
+            <id>release</id>
+            <properties>
+                <repository.url>8.140.171.253:8081</repository.url>
+            </properties>
+        </profile>
+        <profile>
+            <id>master</id>
+            <properties>
+                <repository.url>8.140.171.253:8081</repository.url>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
