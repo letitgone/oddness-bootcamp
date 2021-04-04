@@ -20,7 +20,7 @@ public class DefaultSqlSession implements SqlSession {
 
     @Override
     public <E> List<E> selectList(String statementId, Object... params) throws Exception {
-        simpleExecutor simpleExecutor = new simpleExecutor();
+        SimpleExecutor simpleExecutor = new SimpleExecutor();
         MappedStatement mappedStatement = configuration.getMappedStatementMap().get(statementId);
         List<Object> list = simpleExecutor.query(configuration, mappedStatement, params);
         return (List<E>) list;

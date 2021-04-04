@@ -5,7 +5,7 @@ import com.oddness.pojo.Configuration;
 import com.oddness.pojo.MappedStatement;
 import com.oddness.utils.GenericTokenParser;
 import com.oddness.utils.ParameterMapping;
-import com.oddness.utils.ParameterMappingTokenHandler;
+import com.oddness.utils.ParameterMappingTokenHandlers;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
@@ -21,7 +21,7 @@ import java.util.List;
  * @Author ZhangGJ
  * @Date 2021/04/02 07:27
  */
-public class simpleExecutor implements Executor {
+public class SimpleExecutor implements Executor {
 
     @Override
     public <E> List<E> query(Configuration configuration, MappedStatement mappedStatement,
@@ -71,8 +71,8 @@ public class simpleExecutor implements Executor {
     }
 
     private BoundSql getBoundSql(String sql) {
-        ParameterMappingTokenHandler parameterMappingTokenHandler =
-                new ParameterMappingTokenHandler();
+        ParameterMappingTokenHandlers parameterMappingTokenHandler =
+                new ParameterMappingTokenHandlers();
         GenericTokenParser genericTokenParser =
                 new GenericTokenParser("#{", "}", parameterMappingTokenHandler);
         String parseSql = genericTokenParser.parse(sql);

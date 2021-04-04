@@ -7,7 +7,7 @@ import java.util.List;
  * @Author ZhangGJ
  * @Date 2021/04/02 07:27
  */
-public class ParameterMappingTokenHandler implements TokenHandler {
+public class ParameterMappingTokenHandlers implements TokenHandler {
     private List<ParameterMapping> parameterMappings = new ArrayList<ParameterMapping>();
 
     @Override
