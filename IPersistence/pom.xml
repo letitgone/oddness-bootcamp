@@ -49,8 +49,8 @@
 
     <repositories>
         <repository>
-            <id>oddness</id>
-            <name>oddness nexus maven</name>
+            <id>komodo</id>
+            <name>komodo nexus maven</name>
             <!--suppress UnresolvedMavenProperty -->
             <url>http://${repository.url}/repository/maven-public/</url>
             <snapshots>
@@ -66,8 +66,8 @@
 
     <pluginRepositories>
         <pluginRepository>
-            <id>oddness</id>
-            <name>oddness nexus maven</name>
+            <id>komodo</id>
+            <name>komodo nexus maven</name>
             <!--suppress UnresolvedMavenProperty -->
             <url>http://${repository.url}/repository/maven-public/</url>
             <snapshots>
@@ -83,12 +83,12 @@
 
     <distributionManagement>
         <repository>
-            <id>oddness-nexus-releases</id>
+            <id>komodo-nexus-releases</id>
             <name>Releases</name>
             <url>http://${repository.url}/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
-            <id>oddness-nexus-snapshot</id>
+            <id>komodo-nexus-snapshot</id>
             <name>Snapshot</name>
             <url>http://${repository.url}/repository/maven-snapshots/</url>
         </snapshotRepository>
