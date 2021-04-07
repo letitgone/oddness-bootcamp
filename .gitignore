@@ -21,3 +21,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+IPersistence/.DS_Store
+IPersistence/src/main/java/com/.DS_Store
+IPersistence_test/.DS_Store
