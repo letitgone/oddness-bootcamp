@@ -40,5 +40,32 @@ public interface SqlSession {
      */
     <T> T getMapper(Class<?> mapperClass);
 
+    /**
+     * Insert
+     *
+     * @param statementId
+     * @param params
+     * @return
+     */
+    int insert(String statementId, Object... params) throws Exception;
+
+    /**
+     * Update
+     *
+     * @param statementId
+     * @param params
+     * @return
+     */
+    int update(String statementId, Object... params);
+
+    /**
+     * delete
+     *
+     * @param statementId
+     * @param params
+     * @return
+     */
+    int delete(String statementId, Object... params);
+
 
 }

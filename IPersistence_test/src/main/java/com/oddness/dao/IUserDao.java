@@ -28,5 +28,29 @@ public interface IUserDao {
      */
     User findByCondition(User user) throws Exception;
 
+    /**
+     * 新增用户
+     *
+     * @param user
+     * @return
+     */
+    int insertUser(User user);
+
+    /**
+     * 修改用户
+     *
+     * @param user
+     * @return
+     */
+    int updateUser(User user);
+
+    /**
+     * 删除用户
+     *
+     * @param id
+     * @return
+     */
+    int deleteUser(Integer id);
+
 
 }

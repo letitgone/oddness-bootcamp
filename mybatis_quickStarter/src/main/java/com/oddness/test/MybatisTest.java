@@ -84,7 +84,7 @@ public class MybatisTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         IUserDao mapper = sqlSession.getMapper(IUserDao.class);
-        List<User> all = mapper.findAll();
+        List<User> all = mapper.findAlls();
         for (User user : all) {
             System.out.println(user);
         }
@@ -104,7 +104,7 @@ public class MybatisTest {
         user1.setId(4);
         user1.setUsername("lucy");
 
-        List<User> all = mapper.findByCondition(user1);
+        List<User> all = mapper.findByConditions(user1);
         for (User user : all) {
             System.out.println(user);
         }

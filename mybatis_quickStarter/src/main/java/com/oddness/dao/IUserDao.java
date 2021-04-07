@@ -8,10 +8,10 @@ import java.util.List;
 public interface IUserDao {
 
     //查询所有用户
-    public List<User> findAll() throws IOException;
+    public List<User> findAlls() throws IOException;
 
     //多条件组合查询：演示if
-    public List<User> findByCondition(User user);
+    public List<User> findByConditions(User user);
 
 
     //多值查询：演示foreach

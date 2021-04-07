@@ -24,4 +24,16 @@ public interface Executor {
     public <E> List<E> query(Configuration configuration, MappedStatement mappedStatement,
             Object... params) throws Exception;
 
+    /**
+     * Insert, Update, Delete
+     *
+     * @param configuration
+     * @param mappedStatement
+     * @param params
+     * @return
+     * @throws Exception
+     */
+    public int queryUpdate(Configuration configuration, MappedStatement mappedStatement,
+            Object... params) throws Exception;
+
 }

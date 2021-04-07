@@ -61,6 +61,27 @@ public class SimpleExecutor implements Executor {
         return (List<E>) objects;
     }
 
+    @Override
+    public int queryUpdate(Configuration configuration, MappedStatement mappedStatement,
+            Object... params) throws Exception {
+        Connection connection = configuration.getDataSource().getConnection();
+        String sql = mappedStatement.getSql();
+        BoundSql boundSql = getBoundSql(sql);
+        PreparedStatement preparedStatement = connection.prepareStatement(boundSql.getSqlText());
+        String parameterType = mappedStatement.getParameterType();
+        Class<?> parameterTypeClass = getClassType(parameterType);
+        List<ParameterMapping> parameterMappingList = boundSql.getParameterMappingList();
+        for (int i = 0; i < parameterMappingList.size(); i++) {
+            ParameterMapping parameterMapping = parameterMappingList.get(i);
+            String content = parameterMapping.getContent();
+            Field declaredField = parameterTypeClass.getDeclaredField(content);
+            declaredField.setAccessible(true);
+            Object o = declaredField.get(params[0]);
+            preparedStatement.setObject(i + 1, o);
+        }
+        return preparedStatement.executeUpdate();
+    }
+
     private Class<?> getClassType(String parameterType) throws ClassNotFoundException {
         if (parameterType != null) {
             Class<?> aClass = Class.forName(parameterType);

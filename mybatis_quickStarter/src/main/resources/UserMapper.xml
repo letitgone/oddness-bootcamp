@@ -14,28 +14,28 @@
 
 
     <!--查询用户-->
-    <select id="findAll" resultType="uSeR">
+    <select id="findAlls" resultType="uSeR">
        <include refid="selectUser"></include>
     </select>
 
     <!--添加用户-->
     <!--parameterType：参数类型-->
-    <insert id="saveUser" parameterType="user" >
-        insert into user values(#{id},#{username})
-    </insert>
+<!--    <insert id="saveUser" parameterType="user" >-->
+<!--        insert into user values(#{id},#{username})-->
+<!--    </insert>-->
 
-    <!--修改-->
-    <update id="updateUser" parameterType="user">
-        update user set username = #{username} where id = #{id}
-    </update>
+<!--    &lt;!&ndash;修改&ndash;&gt;-->
+<!--    <update id="updateUser" parameterType="user">-->
+<!--        update user set username = #{username} where id = #{id}-->
+<!--    </update>-->
 
-    <!--删除-->
-    <delete id="deleteUser" parameterType="int">
-        delete from user where id = #{abc}
-    </delete>
+<!--    &lt;!&ndash;删除&ndash;&gt;-->
+<!--    <delete id="deleteUser" parameterType="int">-->
+<!--        delete from user where id = #{abc}-->
+<!--    </delete>-->
 
     <!--多条件组合查询：演示if-->
-    <select id="findByCondition" parameterType="user" resultType="user">
+    <select id="findByConditions" parameterType="user" resultType="user">
         <include refid="selectUser"></include>
         <where>
         <if test="id !=null">
@@ -58,9 +58,5 @@
         </where>
 
     </select>
-
-
-
-    
     
 </mapper>

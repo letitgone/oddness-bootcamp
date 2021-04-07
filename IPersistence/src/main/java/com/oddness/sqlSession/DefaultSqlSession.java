@@ -52,10 +52,31 @@ public class DefaultSqlSession implements SqlSession {
                             List<Object> objects = selectList(statementId, args);
                             return objects;
                         }
+//                        } else if (genericReturnType instanceof Integer) {
+//                            return insert(statementId, args);
+//                        }
                         return selectOne(statementId, args);
                     }
                 });
         return (T) proxyInstance;
+    }
+
+    @Override
+    public int insert(String statementId, Object... params) throws Exception {
+        SimpleExecutor simpleExecutor = new SimpleExecutor();
+        MappedStatement mappedStatement = configuration.getMappedStatementMap().get(statementId);
+        int rows = simpleExecutor.queryUpdate(configuration, mappedStatement, params);
+        return rows;
+    }
+
+    @Override
+    public int update(String statementId, Object... params) {
+        return 0;
+    }
+
+    @Override
+    public int delete(String statementId, Object... params) {
+        return 0;
     }
 
 
