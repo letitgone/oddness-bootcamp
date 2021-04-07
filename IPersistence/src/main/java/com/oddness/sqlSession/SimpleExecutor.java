@@ -84,7 +84,7 @@ public class SimpleExecutor implements Executor {
             String content = parameterMapping.getContent();
             String simpleName = parameterTypeClass.getSimpleName();
             if ("Integer".equals(simpleName) || "String".equals(simpleName)) {
-                preparedStatement.setObject(i + 1, params[0]);
+                preparedStatement.setObject(i + 1, params[i]);
             } else {
                 Field declaredField = parameterTypeClass.getDeclaredField(content);
                 declaredField.setAccessible(true);

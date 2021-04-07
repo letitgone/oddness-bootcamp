@@ -9,6 +9,7 @@ import com.oddness.sqlSession.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -37,7 +38,7 @@ public class IPersistenceTest {
          */
         User user = new User();
         user.setId(1);
-        user.setUsername("lisi123");
+        user.setUsername("愣头青");
         User user2 = userDao.findByCondition(user);
         System.out.println(user2);
 
@@ -54,14 +55,16 @@ public class IPersistenceTest {
          * Update
          */
         User updateUser = new User();
-        updateUser.setId(4);
+        updateUser.setId(user2.getId());
         updateUser.setUsername("愣头青");
         userDao.updateUser(updateUser);
 
         /**
          * Delete
          */
-        userDao.deleteUser(9, "铁头娃");
+        User user1 = userList.stream().max(Comparator.comparing(User::getId)).get();
+        System.out.println("Max id: " + user1.getId());
+        userDao.deleteUser(user1.getId(), user1.getUsername());
 
     }
 }
