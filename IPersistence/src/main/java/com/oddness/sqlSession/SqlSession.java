@@ -41,13 +41,14 @@ public interface SqlSession {
     <T> T getMapper(Class<?> mapperClass);
 
     /**
-     * Insert
+     * executeUpdate
      *
      * @param statementId
      * @param params
      * @return
+     * @throws Exception
      */
-    int insert(String statementId, Object... params) throws Exception;
+    int executeUpdate(String statementId, Object... params) throws Exception;
 
     /**
      * Update

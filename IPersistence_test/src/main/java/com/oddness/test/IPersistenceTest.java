@@ -24,34 +24,44 @@ public class IPersistenceTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         IUserDao userDao = sqlSession.getMapper(IUserDao.class);
 
-        User user = new User();
-        user.setUsername("铁头娃");
-        user.setBirthday("2021-04-07");
-        user.setPassword("123456");
-
         /**
          * Select
          */
         List<User> userList = userDao.findAll();
-        User user1 = userDao.findByCondition(user);
+        for (User user1 : userList) {
+            System.out.println(user1);
+        }
+
+        /**
+         * Select one
+         */
+        User user = new User();
+        user.setId(1);
+        user.setUsername("lisi123");
+        User user2 = userDao.findByCondition(user);
+        System.out.println(user2);
 
         /**
          * Insert
          */
-        userDao.insertUser(user);
+        User user3 = new User();
+        user3.setUsername("铁头娃");
+        user3.setPassword("123456");
+        user3.setBirthday("2021-04-08");
+        userDao.insertUser(user3);
 
-        User updateUser = new User();
-        updateUser.setId(user.getId());
-        updateUser.setUsername("愣头青");
         /**
          * Update
          */
-        userDao.updateUser(user);
+        User updateUser = new User();
+        updateUser.setId(4);
+        updateUser.setUsername("愣头青");
+        userDao.updateUser(updateUser);
 
         /**
          * Delete
          */
-        userDao.deleteUser(user.getId());
+        userDao.deleteUser(9, "铁头娃");
 
     }
 }

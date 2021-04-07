@@ -48,9 +48,10 @@ public interface IUserDao {
      * 删除用户
      *
      * @param id
+     * @param username
      * @return
      */
-    int deleteUser(Integer id);
+    int deleteUser(Integer id, String username);
 
 
 }

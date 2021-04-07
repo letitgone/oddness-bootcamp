@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -42,9 +43,14 @@ public class SimpleExecutor implements Executor {
             preparedStatement.setObject(i + 1, o);
         }
         ResultSet resultSet = preparedStatement.executeQuery();
+        System.out.println(
+                "=================================================SQL: " + boundSql.getSqlText());
+        System.out.println(
+                "===============================================PARAM: " + Arrays.toString(params));
         String resultType = mappedStatement.getResultType();
         Class<?> resultTypeClass = getClassType(resultType);
         ArrayList<Object> objects = new ArrayList<>();
+        int rows = 0;
         while (resultSet.next()) {
             Object o = resultTypeClass.newInstance();
             ResultSetMetaData metaData = resultSet.getMetaData();
@@ -57,7 +63,9 @@ public class SimpleExecutor implements Executor {
                 writeMethod.invoke(o, value);
             }
             objects.add(o);
+            rows++;
         }
+        System.out.println("==============================================UPDATE: " + rows);
         return (List<E>) objects;
     }
 
@@ -74,11 +82,18 @@ public class SimpleExecutor implements Executor {
         for (int i = 0; i < parameterMappingList.size(); i++) {
             ParameterMapping parameterMapping = parameterMappingList.get(i);
             String content = parameterMapping.getContent();
-            Field declaredField = parameterTypeClass.getDeclaredField(content);
-            declaredField.setAccessible(true);
-            Object o = declaredField.get(params[0]);
-            preparedStatement.setObject(i + 1, o);
+            String simpleName = parameterTypeClass.getSimpleName();
+            if ("Integer".equals(simpleName) || "String".equals(simpleName)) {
+                preparedStatement.setObject(i + 1, params[0]);
+            } else {
+                Field declaredField = parameterTypeClass.getDeclaredField(content);
+                declaredField.setAccessible(true);
+                Object o = declaredField.get(params[0]);
+                preparedStatement.setObject(i + 1, o);
+            }
         }
+        System.out.println("=================================================SQL: " + boundSql.getSqlText());
+        System.out.println("===============================================PARAM: " + Arrays.toString(params));
         return preparedStatement.executeUpdate();
     }
 

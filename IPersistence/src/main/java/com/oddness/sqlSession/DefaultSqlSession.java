@@ -52,9 +52,10 @@ public class DefaultSqlSession implements SqlSession {
                             List<Object> objects = selectList(statementId, args);
                             return objects;
                         }
-//                        } else if (genericReturnType instanceof Integer) {
-//                            return insert(statementId, args);
-//                        }
+                        String typeName = genericReturnType.getTypeName();
+                        if ("int".equals(typeName)) {
+                            return executeUpdate(statementId, args);
+                        }
                         return selectOne(statementId, args);
                     }
                 });
@@ -62,10 +63,11 @@ public class DefaultSqlSession implements SqlSession {
     }
 
     @Override
-    public int insert(String statementId, Object... params) throws Exception {
+    public int executeUpdate(String statementId, Object... params) throws Exception {
         SimpleExecutor simpleExecutor = new SimpleExecutor();
         MappedStatement mappedStatement = configuration.getMappedStatementMap().get(statementId);
         int rows = simpleExecutor.queryUpdate(configuration, mappedStatement, params);
+        System.out.println("==============================================UPDATE: " + rows);
         return rows;
     }
 
